@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/aprusik/soundscape#readme",
   "dependencies": {
-    "electron": "^4.0.5"
+    "custom-electron-titlebar": "^3.0.3",
+    "electron": "^4.0.5",
+    "material-components-web": "^1.0.1"
   }
 }
