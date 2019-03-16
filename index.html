@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"> -->
+    <link rel="stylesheet" href="styles/bundle.css">
   </head>
   <body>
     <h1>Hello World!</h1>
@@ -14,17 +13,17 @@
     and Electron <script>document.write(process.versions.electron)</script>.
 
     <h1>WebAudio</h1>
-    <audio src="mischief-maker-by-kevin-macleod.mp3"></audio>
-    <button type="button" class="mdc-button" data-playing="false">Play/Pause</button>
+    <audio src="resources/mischief-maker-by-kevin-macleod.mp3"></audio>
+    <button class="foo-button mdc-button" data-playing="false">Play/Pause</button>
 
-    <script src="play-button.js"></script>
-
-
+    <script src="scripts/play-button.js"></script>
 
 
+
+    <script src="scripts/bundle.js" async></script>
     <script>
         // You can also require other files to run in this process
-        require('./renderer.js')
-      </script>  
-    </body>
+        require('./scripts/renderer.js')
+    </script>  
+  </body>
 </html>
