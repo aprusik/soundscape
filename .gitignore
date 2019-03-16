@@ -1,2 +1,48 @@
-node_modules
-soundscape.code-workspace
+# Build folder and files #
+##########################
+build/
+
+# Development folders and files #
+#################################
+dist/
+node_modules/
+
+# Log files & folders #
+#######################
+logs/
+*.log
+npm-debug.log*
+.npm
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Photoshop & Illustrator files #
+#################################
+*.ai
+*.eps
+*.psd
+
+# Windows & Mac file caches #
+#############################
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Windows shortcuts #
+#####################
+*.lnk
+
+# VSC workspace files #
+#######################
+*.code-workspace
