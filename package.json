@@ -2,7 +2,7 @@
   "name": "soundscape",
   "version": "0.1.0",
   "description": "",
-  "main": "scripts/main.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "webpack -p && electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/aprusik/soundscape#readme",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
     "custom-electron-titlebar": "^3.0.3",
     "electron": "^4.0.5",
+    "frameless-titlebar": "^1.0.5",
     "material-components-web": "^1.0.1"
   },
   "devDependencies": {
@@ -35,5 +38,6 @@
     "sass-loader": "^7.1.0",
     "webpack": "^3.12.0",
     "webpack-dev-server": "^3.1.11"
-  }
+  },
+  "keywords": []
 }

@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="styles/bundle.css">
   </head>
   <body>
+
+    <div id="react_test"></div>
+
     <h1>Hello World!</h1>
     We are using node <script>document.write(process.versions.node)</script>,
     Chrome <script>document.write(process.versions.chrome)</script>,
@@ -16,14 +19,22 @@
     <audio src="resources/mischief-maker-by-kevin-macleod.mp3"></audio>
     <button class="foo-button mdc-button" data-playing="false">Play/Pause</button>
 
-    <script src="scripts/play-button.js"></script>
+    <script src="src/play-button.js"></script>
 
 
 
-    <script src="scripts/bundle.js" async></script>
+    <script src="src/bundle.js" async></script>
     <script>
         // You can also require other files to run in this process
-        require('./scripts/renderer.js')
-    </script>  
+        require('./src/renderer.js')
+    </script>
+
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <script src="src/react_test.js"></script>
+
+
   </body>
 </html>
