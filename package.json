@@ -2,10 +2,12 @@
   "name": "soundscape",
   "version": "0.1.0",
   "description": "",
-  "main": "src/main.js",
+  "main": "main.js",
   "scripts": {
-    "start": "webpack -p && electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prod": "webpack --mode production --config webpack.config.prod.js && electron --noDevServer .",
+    "start": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.config.dev.js --mode development",
+    "build": "webpack --config webpack.config.prod.js --mode production",
+    "package": "npm run build && electron-packager ./ --out=./build --platfrom=all"
   },
   "repository": {
     "type": "git",
