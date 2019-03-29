@@ -26,6 +26,10 @@ class App extends React.Component {
       <div>
         <TitleBar
           app="Electron"
+          theme={{
+            barTheme: 'dark',
+            barBackgroundColor: '#1c313a'
+          }}
         />
         {
           <div>
