@@ -2,7 +2,7 @@
   "name": "soundscape",
   "version": "0.1.0",
   "description": "",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "prod": "webpack --mode production --config webpack.config.prod.js && electron --noDevServer .",
     "dev": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.config.dev.js --mode development",

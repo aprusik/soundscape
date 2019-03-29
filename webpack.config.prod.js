@@ -49,7 +49,7 @@ module.exports = {
   target: 'electron-renderer',
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'public/index.html'
+      template: 'src/public/index.html'
     }),
     new MiniCssExtractPlugin({ filename: 'bundle.css' }),
     new webpack.DefinePlugin({
