@@ -54,7 +54,8 @@ function createWindow() {
   } else {
     indexPath = url.format({
       protocol: 'file:',
-      pathname: path.join(__dirname, 'dist', 'index.html'),
+      // this line determines location of index.html in prod builds
+      pathname: path.join(__dirname, '../dist', 'index.html'),
       slashes: true
     })
   }
