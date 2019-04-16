@@ -60,9 +60,6 @@ class App extends React.Component {
             >
             Play/Pause
             </button>
-
-            <script src="play-button.js"></script>
-
           </div>
         }
       </div>
