@@ -1,31 +1,68 @@
-// this doesn't do anything anymore
+import React from 'react'
+import mp3 from './../resources/mischief-maker-by-kevin-macleod.mp3'
+import {MDCRipple} from '@material/ripple/index';
 
-console.clear();
+export class PlayButton extends React.Component {
+  constructor(props) {
+    super(props)
 
-const audioCtx = new AudioContext();
+    name = "hello"
+    this.playButton = this.playButton.bind(this)
+  }
 
-const audioElement = document.querySelector('audio');
-const track = audioCtx.createMediaElementSource(audioElement);
+  componentDidMount(){
+    this.playButton()
+  }
 
-track.connect(audioCtx.destination);
+  render() {
+    return (
+      <div>
+        <h3>{name}</h3>
 
-// select our play button
-const playButton = document.querySelector('button');
+        <audio
+        // controls
+          ref="audio"
+          src={mp3}
+        />
 
-playButton.addEventListener('click', function() {
+        <button 
+          ref="button"
+          className="foo-button mdc-button" 
+          data-playing="false"
+        >
+          Play/Pause
+        </button>
+      </div>
+    );
+  }
 
-    // check if context is in suspended state (autoplay policy)
-    if (audioCtx.state === 'suspended') {
+  playButton() {
+    let audioCtx = new AudioContext();
+    let audioElement = this.refs.audio;
+    let track = audioCtx.createMediaElementSource(audioElement);
+
+    track.connect(audioCtx.destination);
+
+    // select our play button
+    let playButton = this.refs.button;
+    const ripple = new MDCRipple(playButton);
+
+    playButton.addEventListener('click', function() {
+
+      // check if context is in suspended state (autoplay policy)
+      if (audioCtx.state === 'suspended') {
         audioCtx.resume();
-    }
+      }
 
-    // play or pause track depending on state
-    if (this.dataset.playing === 'false') {
+      // play or pause track depending on state
+      if (this.dataset.playing === 'false') {
         audioElement.play();
         this.dataset.playing = 'true';
-    } else if (this.dataset.playing === 'true') {
+      } else if (this.dataset.playing === 'true') {
         audioElement.pause();
         this.dataset.playing = 'false';
-    }
+      }
 
-}, false);
+    }, false);
+  }
+}

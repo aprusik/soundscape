@@ -1,11 +1,14 @@
 import React from 'react'
 import { render } from 'react-dom'
 import TitleBar from 'frameless-titlebar'
-import mp3 from './resources/mischief-maker-by-kevin-macleod.mp3'
-import {MDCRipple} from '@material/ripple/index';
+import {PlayButton} from './components/play-button'
 
 // Import some styles
 import './styles/app.scss'
+
+function Element(props) {
+  return <div><h1>Hello, {props.name}!</h1></div>
+}
 
 // Create main App component
 class App extends React.Component {
@@ -13,12 +16,10 @@ class App extends React.Component {
     super(props)
 
     this.createVisualization = this.createVisualization.bind(this)
-    this.playButton = this.playButton.bind(this)
   }
 
   componentDidMount(){
     this.createVisualization()
-    this.playButton()
   }
 
   render() {
@@ -42,24 +43,15 @@ class App extends React.Component {
             </p>
 
             <h1>WebAudio</h1>
-            <audio
-            // controls
-              ref="audio"
-              src={mp3}
-            />
 
             {/* <canvas
               ref="analyzerCanvas"
               id="analyzer"
             /> */}
 
-            <button 
-              ref="button"
-              className="foo-button mdc-button" 
-              data-playing="false"
-            >
-            Play/Pause
-            </button>
+            <Element name="Austin"/>
+            <PlayButton/>
+
           </div>
         }
       </div>
@@ -94,36 +86,6 @@ class App extends React.Component {
     //     }
     // };
     // renderFrame()
-  }
-
-  playButton() {
-    let audioCtx = new AudioContext();
-    let audioElement = this.refs.audio;
-    let track = audioCtx.createMediaElementSource(audioElement);
-
-    track.connect(audioCtx.destination);
-
-    // select our play button
-    let playButton = this.refs.button;
-    const ripple = new MDCRipple(playButton);
-
-    playButton.addEventListener('click', function() {
-
-      // check if context is in suspended state (autoplay policy)
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-
-      // play or pause track depending on state
-      if (this.dataset.playing === 'false') {
-        audioElement.play();
-        this.dataset.playing = 'true';
-      } else if (this.dataset.playing === 'true') {
-        audioElement.pause();
-        this.dataset.playing = 'false';
-      }
-
-    }, false);
   }
 }
 
