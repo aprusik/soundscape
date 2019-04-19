@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import TitleBar from 'frameless-titlebar'
-import {PlayButton} from './components/play-button'
+import { PlayButton } from './components/play-button'
 import WebFont from 'webfontloader'
 
 // Import some styles
@@ -62,7 +62,7 @@ class App extends React.Component {
               fname="Austin Wintory - The Banner Saga 2 - 01 An Oath, Until The End.mp3"
             />
             <PlayButton 
-              name="Mischeif Maker"
+              name="Mischief Maker"
               fname="mischief-maker-by-kevin-macleod.mp3"
             />
 

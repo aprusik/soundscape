@@ -1,8 +1,7 @@
 import React from 'react'
 import {Fab} from '@rmwc/fab'
 import {Slider} from '@rmwc/slider'
-import {Theme} from '@rmwc/theme'
-import {Card, CardPrimaryAction, CardMedia, CardMediaContent} from '@rmwc/card'
+import {Card, CardMedia, CardMediaContent} from '@rmwc/card'
 import {Typography} from '@rmwc/typography'
 
 var sound = require.context('./../resources', true);
@@ -15,7 +14,8 @@ export class PlayButton extends React.Component {
       mp3: sound(`./${this.props.fname}`),
       duration: 0,
       currentTime: 0,
-      audio: this.refs.audio}
+      paused: true
+    }
   }
 
   componentDidMount(){
@@ -24,7 +24,8 @@ export class PlayButton extends React.Component {
     this.timerID = setInterval(
       () => this.setState({
         currentTime: audio.currentTime,
-        duration: audio.duration
+        duration: audio.duration,
+        paused: audio.paused
       }),
       100
     );
@@ -48,7 +49,7 @@ export class PlayButton extends React.Component {
             <CardMediaContent>
               <Fab
                 raised='true'
-                icon="play_arrow"
+                icon={this.state.paused ? "play_arrow" : "pause"}
                 ref="button"
                 theme={['secondaryBg', 'onSecondary']}
                 data-playing="false"
@@ -71,8 +72,11 @@ export class PlayButton extends React.Component {
             type="audio/mpeg"
           />
 
-          <div style={{ padding: '0 1rem 1rem 1rem' }}>
-            <Typography use="headline6" tag="h2">
+          <div style={{
+            padding: '0 1rem 1rem 1rem',
+            marginTop: '0.5rem'
+          }}>
+            <Typography use="headline6" tag="h2" style={{textAlign: 'center'}}>
               {this.props.name}
             </Typography>
             {/* <Typography use="headline6" tag="h2">
@@ -86,7 +90,12 @@ export class PlayButton extends React.Component {
               use="subtitle2"
               tag="h3"
               theme="textSecondaryOnBackground"
-              style={{ marginTop: '-1rem' }}
+              style={{
+                marginTop: '-1rem',
+                textAlign: 'center',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden'
+              }}
             >
               {this.props.fname}
             </Typography>
@@ -97,6 +106,7 @@ export class PlayButton extends React.Component {
               min={0}
               max={this.state.duration}
               onInput={evt => this.refs.audio.currentTime = evt.detail.value}
+              style={{marginTop: '-1.5rem', marginBottom: '-1rem'}}
             />
           </div>     
         </Card>
