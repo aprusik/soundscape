@@ -2,9 +2,16 @@ import React from 'react'
 import { render } from 'react-dom'
 import TitleBar from 'frameless-titlebar'
 import {PlayButton} from './components/play-button'
+import WebFont from 'webfontloader'
 
 // Import some styles
 import './styles/app.scss'
+
+WebFont.load({
+  google: {
+    families: ['Material Icons']
+  }
+})
 
 function Element(props) {
   return <div><h1>Hello, {props.name}!</h1></div>
@@ -29,12 +36,12 @@ class App extends React.Component {
           app="Electron"
           theme={{
             barTheme: 'dark',
-            barBackgroundColor: '#1c313a'
+            barBackgroundColor: '#1b3039'
           }}
         />
         {
           <div>
-            <h1>Hello World!</h1>
+            {/* <h1>Hello World!</h1>
 
             <p>
             We are using node {process.versions.node},<br />
@@ -49,8 +56,15 @@ class App extends React.Component {
               id="analyzer"
             /> */}
 
-            <Element name="Austin"/>
-            <PlayButton/>
+            {/* <Element name="Austin"/> */}
+            <PlayButton
+              name="An Oath, Until The End"
+              fname="Austin Wintory - The Banner Saga 2 - 01 An Oath, Until The End.mp3"
+            />
+            <PlayButton 
+              name="Mischeif Maker"
+              fname="mischief-maker-by-kevin-macleod.mp3"
+            />
 
           </div>
         }

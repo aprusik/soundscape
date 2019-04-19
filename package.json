@@ -20,14 +20,25 @@
   },
   "homepage": "https://github.com/aprusik/soundscape#readme",
   "dependencies": {
+    "@material/card": "^1.1.1",
+    "@material/fab": "^1.1.1",
+    "@material/typography": "^1.0.0",
+    "@rmwc/button": "^5.3.1",
+    "@rmwc/card": "^5.3.1",
+    "@rmwc/fab": "^5.3.1",
+    "@rmwc/icon": "^5.3.1",
+    "@rmwc/slider": "^5.3.1",
+    "@rmwc/theme": "^5.3.1",
+    "@rmwc/typography": "^5.3.1",
     "babel-cli": "^6.26.0",
     "babel-preset-react-app": "^3.1.2",
     "custom-electron-titlebar": "^3.0.3",
     "electron": "^4.1.0",
     "frameless-titlebar": "^1.0.5",
-    "material-components-web": "^1.0.1",
+    "material-components-web": "^1.1.1",
     "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react-dom": "^16.8.4",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "autoprefixer": "^9.5.0",
