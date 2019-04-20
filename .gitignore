@@ -7,6 +7,10 @@ build/
 dist/
 node_modules/
 
+# Music Files #
+###############
+src/resources/*
+
 # Log files & folders #
 #######################
 logs/

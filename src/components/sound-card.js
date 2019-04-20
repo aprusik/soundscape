@@ -64,11 +64,11 @@ export class SoundCard extends React.Component {
                 theme={['secondaryBg', 'onSecondary']}
                 data-playing="false"
                 style={{
-                  margin: '-1.5rem 8rem',
+                  margin: '-1.5rem auto',
                   bottom: '0',
                   left: '0',
                   right: '0',
-                  position: 'absolute'
+                  position: 'absolute',
                 }}
               />
             </CardMediaContent>

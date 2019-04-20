@@ -6,6 +6,7 @@ import WebFont from 'webfontloader'
 
 // Import some styles
 import './styles/app.scss'
+import { SoundList } from './components/sound-list';
 
 WebFont.load({
   google: {
@@ -31,15 +32,7 @@ class App extends React.Component {
         />
         {
           <div>
-            <SoundCard
-              name="An Oath, Until The End"
-              fname="Austin Wintory - The Banner Saga 2 - 01 An Oath, Until The End.mp3"
-            />
-            <SoundCard 
-              name="Mischief Maker"
-              fname="mischief-maker-by-kevin-macleod.mp3"
-            />
-
+            <SoundList/>
           </div>
         }
       </div>
