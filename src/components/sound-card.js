@@ -6,7 +6,7 @@ import {Typography} from '@rmwc/typography'
 
 var sound = require.context('./../resources', true);
 
-export class PlayButton extends React.Component {
+export class SoundCard extends React.Component {
   constructor(props) {
     super(props)
     this.playButton = this.playButton.bind(this)
@@ -14,7 +14,8 @@ export class PlayButton extends React.Component {
       mp3: sound(`./${this.props.fname}`),
       duration: 0,
       currentTime: 0,
-      paused: true
+      paused: true,
+      isMoving: false,
     }
   }
 
@@ -22,18 +23,27 @@ export class PlayButton extends React.Component {
     this.playButton()
     let audio = this.refs.audio;
     this.timerID = setInterval(
-      () => this.setState({
-        currentTime: audio.currentTime,
-        duration: audio.duration,
-        paused: audio.paused
-      }),
+        () => {
+          // console.log(this.state.pos)
+          this.state.isMoving ?
+            this.setState({
+              duration: audio.duration,
+              paused: audio.paused
+            })
+          :
+            this.setState({
+              currentTime: audio.currentTime,
+              duration: audio.duration,
+              paused: audio.paused
+            })
+        },
       100
     );
   }
 
   render() {
     return (
-      <div style={{padding: '1rem 1rem 1rem 1rem'}}>
+      <div style={{padding: '1rem 1rem 0 1rem'}}>
         <Card
           outline='true'
           style={{ width: '20rem' }}
@@ -94,18 +104,24 @@ export class PlayButton extends React.Component {
                 marginTop: '-1rem',
                 textAlign: 'center',
                 whiteSpace: 'nowrap',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                textOverflow: 'ellipsis'
               }}
             >
               {this.props.fname}
             </Typography>
             
-            <Slider 
+            <Slider
               continuous='true'
               value={this.state.currentTime}
               min={0}
               max={this.state.duration}
-              onInput={evt => this.refs.audio.currentTime = evt.detail.value}
+              onChange={() => this.setState({ isMoving: false }) }
+              onInput={evt => {
+                this.refs.audio.currentTime = evt.detail.value
+                if (!this.state.isMoving) { this.setState({ isMoving: true }) }
+                this.setState({currentTime: evt.detail.value})
+              }}
               style={{marginTop: '-1.5rem', marginBottom: '-1rem'}}
             />
           </div>     
@@ -141,5 +157,35 @@ export class PlayButton extends React.Component {
       }
 
     }, false);
+  }
+
+  createVisualization() {
+    // let context = new AudioContext();
+    // let analyser = context.createAnalyser();
+    // let canvas = this.refs.analyzerCanvas;
+    // let ctx = canvas.getContext('2d');
+    // let audio = this.refs.audio;
+    // audio.crossOrigin = "anonymous";
+    // let audioSrc = context.createMediaElementSource(audio);
+    // audioSrc.connect(analyser);
+    // audioSrc.connect(context.destination);
+    // analyser.connect(context.destination);
+
+    // function renderFrame(){
+    //     let freqData = new Uint8Array(analyser.frequencyBinCount)
+    //     requestAnimationFrame(renderFrame)
+    //     analyser.getByteFrequencyData(freqData)
+    //     ctx.clearRect(0, 0, canvas.width, canvas.height)
+    //     // console.log(freqData)
+    //     ctx.fillStyle = '#9933ff';
+    //     let bars = 100;
+    //     for (var i = 0; i < bars; i++) {
+    //         let bar_x = i * 3;
+    //         let bar_width = 2;
+    //         let bar_height = -(freqData[i] / 2);
+    //         ctx.fillRect(bar_x, canvas.height, bar_width, bar_height)
+    //     }
+    // };
+    // renderFrame()
   }
 }
