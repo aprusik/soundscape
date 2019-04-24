@@ -7,14 +7,17 @@ import { Select } from '@rmwc/select'
 import {Button} from '@rmwc/button'
 import { TextField } from '@rmwc/textfield'
 import { Dialog, DialogTitle, DialogActions, DialogContent, DialogButton } from '@rmwc/dialog'
+import { Ripple } from '@rmwc/ripple'
+import { CircularProgress } from '@rmwc/circular-progress'
 
 var sound = require.context('./../resources', true);
 
 export class SoundCard extends React.Component {
   constructor(props) {
     super(props)
-    this.playButton = this.playButton.bind(this)
-    this.createVisualization = this.createVisualization.bind(this)
+    this.checkLoop = this.checkLoop.bind(this);
+    this.playButton = this.playButton.bind(this);
+    this.createVisualization = this.createVisualization.bind(this);
     this.state = {
       mp3: sound(`./${this.props.fname}`),
       duration: 0,
@@ -22,36 +25,67 @@ export class SoundCard extends React.Component {
       paused: true,
       isMoving: false,
       loopDialogOpen: false,
+      isLooping: false,
       upper: 0,
-      lower: 0
+      lower: 0,
+      loopTime: 0,
+      loopCount: 0,
+      editName: false,
+      name: this.props.name,
+      delay: 0,
+      ctx: new AudioContext()
     }
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidMount() {
-    let audioCtx = new AudioContext();
+    let audioCtx = this.state.ctx;
     let audio = this.refs.audio;
     let track = audioCtx.createMediaElementSource(audio);
 
-    this.playButton(audioCtx, track)
     this.createVisualization(audioCtx, track)
     this.timerID = setInterval(
-        () => {
-          // console.log(this.state.pos)
-          this.state.isMoving ?
-            this.setState({
-              duration: audio.duration,
-              paused: audio.paused
-            })
-          :
-            this.setState({
-              currentTime: audio.currentTime,
-              duration: audio.duration,
-              paused: audio.paused
-            })
+      () => {
+        this.checkLoop(audioCtx);
+        this.state.isMoving ?
+          this.setState({
+            duration: audio.duration,
+            paused: audio.paused
+          })
+        :
+          this.setState({
+            currentTime: audio.currentTime,
+            duration: audio.duration,
+            paused: audio.paused
+          })
         },
       100
     );
+  }
+
+  checkLoop(ctx) {
+    const max = Number(this.state.upper);
+    const min = Number(this.state.lower);
+
+  this.setState({ isLooping: max >= min && max > 0})
+
+    if (this.state.isLooping) {
+      if (this.state.loopTime <= ctx.currentTime && this.state.paused) {
+        if (this.state.loopCount == 0) {
+          const delay = Math.random() * (max - min) + min;
+          this.setState({
+            loopTime: ctx.currentTime + delay,
+            loopCount: 1,
+            delay: delay
+          });
+          console.log(delay);
+
+        } else {
+          this.refs.audio.play();
+          this.setState({ loopCount: 0 });
+        }
+      }
+    }
   }
 
   handleInputChange(event) {
@@ -85,6 +119,7 @@ export class SoundCard extends React.Component {
               <Fab
                 icon={this.state.paused ? "play_arrow" : "pause"}
                 ref="button"
+                onClick={this.playButton}
                 theme={['secondaryBg', 'onSecondary']}
                 data-playing="false"
                 style={{
@@ -133,7 +168,7 @@ export class SoundCard extends React.Component {
                 </DialogContent>
                 <DialogActions>
                   <DialogButton action="cancel" isDefaultAction>
-                    Cancel
+                    Stop
                   </DialogButton>
                   <DialogButton action="apply" >Apply</DialogButton>
                 </DialogActions>
@@ -141,7 +176,7 @@ export class SoundCard extends React.Component {
 
               <Fab
                 mini
-                icon={"loop"}
+                icon={ this.loopIcon() }
                 onClick={() =>
                   this.setState({ loopDialogOpen: true })}
                 ref="loopButton"
@@ -155,7 +190,6 @@ export class SoundCard extends React.Component {
                   position: 'absolute',
                 }}
               />
-              {/* <CircularProgress progress={0.9}></CircularProgress> */}
             </CardMediaContent>
           </CardMedia>
         
@@ -170,9 +204,15 @@ export class SoundCard extends React.Component {
             padding: '0 1rem 1rem 1rem',
             marginTop: '0.5rem'
           }}>
-            <Typography use="headline6" tag="h2" style={{textAlign: 'center'}}>
+            {/* <Typography onClick={() => this.setState({ editName: true })}
+              use="headline6"
+              tag="h2"
+              style={{ textAlign: 'center' }}
+            >
               {this.props.name}
-            </Typography>
+            </Typography> */}
+
+            {this.checkName()}
 
             <Typography
               use="subtitle2"
@@ -186,7 +226,7 @@ export class SoundCard extends React.Component {
                 textOverflow: 'ellipsis'
               }}
             >
-              {this.props.fname}
+                {this.props.fname}
             </Typography>
             
             <Slider
@@ -202,54 +242,81 @@ export class SoundCard extends React.Component {
               }}
               style={{marginTop: '-1.5rem', marginBottom: '-1rem'}}
             />
-              <Typography
-                use="caption"
-                theme="textSecondaryOnBackground"
-                style={{
-                  margin: '0',
-                  float: 'left'
-                }}
-              >{this.converTime(this.state.currentTime)}</Typography>
-              <Typography
-                use="caption"
-                theme="textSecondaryOnBackground"
-                style={{
-                  margin: '0',
-                  float: 'right'
-                }}
-              >{this.converTime(this.state.duration)}
-              </Typography>
+            <Typography
+              use="caption"
+              theme="textSecondaryOnBackground"
+              style={{
+                margin: '0',
+                float: 'left'
+              }}
+            >{this.converTime(this.state.currentTime)}</Typography>
+            <Typography
+              use="caption"
+              theme="textSecondaryOnBackground"
+              style={{
+                margin: '0',
+                float: 'right'
+              }}
+            >{this.converTime(this.state.duration)}
+            </Typography>
           </div>
         </Card>
       </div>
     );
   }
 
-  playButton(audioCtx, track) {
-    let audioElement = this.refs.audio;
+  checkName() {
+    if (this.state.editName)
+      return (
+        <div style={{marginTop: '30px', marginBottom: '30px'}}>
+          <TextField
+            fullwidth
+            name="name"
+            defaultValue={this.state.name}
+            onChange={this.handleInputChange}
+          />
+          <Button
+            raised
+            style={{ margin: '10px auto', clear: 'right' }}
+            onClick={() => this.setState({ editName: false })}>
+            Rename
+          </Button>
+        </div>
+      )
+    else 
+      return (
+        <Ripple>
+          <Typography onClick={() => this.setState({ editName: true })}
+            use="headline6"
+            tag="h2"
+            style={{ textAlign: 'center' }}
+          >
+            {this.state.name}
+          </Typography>
+        </Ripple>
+      )
+  }
 
-    track.connect(audioCtx.destination);
+  playButton() {
+    let audio = this.refs.audio;
+    if (this.state.paused) {
+      audio.play()
+    } else {
+      audio.pause()
+    }
+  }
 
-    // select our play button
-    let playButton = this.refs.button;
+  loopIcon() {
+    const remaining = this.state.loopTime - this.state.ctx.currentTime;
 
-    playButton.addEventListener('click', function() {
-
-      // check if context is in suspended state (autoplay policy)
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-
-      // play or pause track depending on state
-      if (this.dataset.playing === 'false') {
-        audioElement.play();
-        this.dataset.playing = 'true';
-      } else if (this.dataset.playing === 'true') {
-        audioElement.pause();
-        this.dataset.playing = 'false';
-      }
-
-    }, false);
+    if (!this.state.isLooping)
+      return "loop"
+    else
+      return (
+        <CircularProgress
+        progress={remaining / this.state.delay}
+        style={{ color: 'white' }} />
+      )
   }
 
   createVisualization(context, audioSrc) {

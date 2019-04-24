@@ -38,7 +38,7 @@ module.exports = {
         include: defaultInclude
       },
       {
-        test: /\.mp3$/,
+        test: /\.(mp3|wav)$/,
         use: [{ loader: 'file-loader?name=audio/[name]__[hash:base64:5].[ext]' }],
         include: defaultInclude
       }
