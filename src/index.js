@@ -22,19 +22,20 @@ function Element(props) {
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <TitleBar
-          app="Electron"
-          theme={{
-            barTheme: 'dark',
-            barBackgroundColor: '#1b3039'
-          }}
-        />
-        {
-          <div>
-            <SoundList/>
-          </div>
-        }
+      <div style={{overflow: 'hidden'}}>
+        <div style={{position: 'fixed', width: '100%', zIndex: '1'}}>
+          <TitleBar
+            app="Electron"
+            style={{position: 'fixed'}}
+            theme={{
+              barTheme: 'dark',
+              barBackgroundColor: '#1b3039'
+            }}
+          />
+        </div>
+        <div style={{position: 'relative', top: '28px', height: '100vh', overflow: 'scroll'}}>
+          <SoundList/>
+        </div>
       </div>
     )
   }

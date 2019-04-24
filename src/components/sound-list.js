@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { SoundCard } from './sound-card'
+import { Grid, GridCell } from '@rmwc/grid'
 
 export class SoundList extends Component {
   constructor(props) {
@@ -16,9 +17,13 @@ export class SoundList extends Component {
 
     return (
       <div>
-        {sounds.map( (sound, index) => {
-          return <SoundCard name={sound} fname={sound}/>
-        })}
+        <Grid align='right'>
+          {sounds.map( (sound, index) => { return (
+            <GridCell span='4'>
+              <SoundCard name={sound} fname={sound}/>
+            </GridCell>
+          )})}
+        </Grid>
       </div>
     )
   }

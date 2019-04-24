@@ -4,6 +4,17 @@
 @import "@material/card/mdc-card";
 @import "@material/typography/mdc-typography";
 @import "@material/slider/mdc-slider";
+@import "@material/icon-button/mdc-icon-button";
+@import "@material/layout-grid/mdc-layout-grid";
+@import "@material/textfield/mdc-text-field";
+@import "@material/dialog/mdc-dialog";
+@import "@material/select/mdc-select";
+@import "@material/floating-label/mdc-floating-label";
+@import "@material/notched-outline/mdc-notched-outline";
+@import "@material/line-ripple/mdc-line-ripple";
+@import "@material/list/mdc-list";
+@import "@material/menu/mdc-menu";
+@import "@material/menu-surface/mdc-menu-surface";
 
 :root {
   --mdc-theme-primary: #445963;
