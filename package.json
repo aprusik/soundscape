@@ -7,7 +7,7 @@
     "prod": "webpack --mode production --config webpack.config.prod.js && electron --noDevServer .",
     "dev": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.config.dev.js --mode development",
     "build": "webpack --config webpack.config.prod.js --mode production",
-    "package": "npm run build && electron-packager ./ --out=./build --platfrom=all"
+    "package": "yarn build && electron-packager ./ --out=./build --platfrom=all --overwrite"
   },
   "repository": {
     "type": "git",
@@ -76,7 +76,8 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.2.1"
+    "webpack-dev-server": "^3.2.1",
+    "webpack-electron-packager": "^1.0.0"
   },
   "keywords": []
 }

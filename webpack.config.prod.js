@@ -5,6 +5,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const BabiliPlugin = require('babili-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const ElectronPackager = require("webpack-electron-packager");
 
 // Any directories you will be adding code/files into, need to be added to this array so webpack will pick them up
 const defaultInclude = path.resolve(__dirname, 'src')
@@ -55,7 +56,13 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    new BabiliPlugin()
+    new BabiliPlugin(),
+    // new ElectronPackager({
+    //   dir: "./",
+    //   out: "./build",
+    //   arch: "x64",
+    //   platform: "win32",
+    // })
   ],
   stats: {
     colors: true,
