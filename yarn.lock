@@ -506,6 +506,17 @@
     hyperform "^0.9.9"
     mutation-observer "^1.0.3"
 
+"@rmwc/base@^5.5.2":
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/@rmwc/base/-/base-5.5.2.tgz#995e40bbda7c1e53e32cde3f89de1790849f8ba1"
+  integrity sha512-B1ZN2BvBSDnjArTf/P0QDtAcJiX3zBwX24E/al7rbVMsvoUmnbe7CbRIJ/NKmTpWKz7aPBGg/+m9DvojLdQysw==
+  dependencies:
+    "@rmwc/types" "^5.5.2"
+    classnames "^2.2.6"
+    focus-trap "^5.0.0"
+    hyperform "^0.9.9"
+    mutation-observer "^1.0.3"
+
 "@rmwc/button@^5.3.1":
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@rmwc/button/-/button-5.3.1.tgz#39276af3856af5da9679513c1c04058553d60987"
@@ -597,6 +608,15 @@
     "@rmwc/base" "^5.3.1"
     "@rmwc/provider" "^5.3.1"
     "@rmwc/types" "^5.3.1"
+
+"@rmwc/image-list@^5.5.2":
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/@rmwc/image-list/-/image-list-5.5.2.tgz#46095120331112e62b7de6bb22488ddfef9b5b21"
+  integrity sha512-6vzKR19cgraQDsnspAABJKrUBYWEwoE6h2gQmZwr0RY/vApBQ/jldXk3UkuBi420pkJyyJTZ4sw2rbwN3PxU5w==
+  dependencies:
+    "@material/image-list" "^1.1.1"
+    "@rmwc/base" "^5.5.2"
+    "@rmwc/types" "^5.5.2"
 
 "@rmwc/line-ripple@^5.3.1":
   version "5.3.1"
@@ -709,6 +729,11 @@
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@rmwc/types/-/types-5.3.1.tgz#5dcc1fed0e37cc5349c4bd3e3655c7d634328544"
   integrity sha512-jT4fppbtLiDA6R6zWnabC/3rQ8C1TGw25fnkanrr8LfRZuLxpspbgNXdxq5bjilOxJXP871PQDxU6CMZb8Bxyw==
+
+"@rmwc/types@^5.5.2":
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/@rmwc/types/-/types-5.5.2.tgz#dbcf65b2ce91dcb2bb54ad51954d2d9c060fbea6"
+  integrity sha512-CLzbNnHg/EXs5NlZ7p3VEHSWArOTCF15DCEn61NpHQbJrOR327IYIfGFnsNTBu9+5tZMHCmG0vOM8M0vaA4LYA==
 
 "@rmwc/typography@^5.3.1":
   version "5.3.1"
@@ -3776,6 +3801,14 @@ focus-trap@^4.0.2:
   integrity sha512-HtLjfAK7Hp2qbBtLS6wEznID1mPT+48ZnP2nkHzgjpL4kroYHg0CdqJ5cTXk+UO5znAxF5fRUkhdyfgrhh8Lzw==
   dependencies:
     tabbable "^3.1.2"
+    xtend "^4.0.1"
+
+focus-trap@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-5.0.1.tgz#285f9df2cd9f5ef82dd1abb5d8a70e66cd4f99e3"
+  integrity sha512-vU7zEdL3y+kfkuwBbT9456JH8QfyemdcdZ2gKMfmgLyAs9NQAkSVQBSZmb9nlb1cVMo+iCsddqeGJog00pd2EQ==
+  dependencies:
+    tabbable "^4.0.0"
     xtend "^4.0.1"
 
 follow-redirects@^1.0.0:
@@ -7429,6 +7462,11 @@ tabbable@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-3.1.2.tgz#f2d16cccd01f400e38635c7181adfe0ad965a4a2"
   integrity sha512-wjB6puVXTYO0BSFtCmWQubA/KIn7Xvajw0x0l6eJUudMG/EAiJvIUnyNX6xO4NpGrJ16lbD0eUseB9WxW0vlpQ==
+
+tabbable@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-4.0.0.tgz#5bff1d1135df1482cf0f0206434f15eadbeb9261"
+  integrity sha512-H1XoH1URcBOa/rZZWxLxHCtOdVUEev+9vo5YdYhC9tCY4wnybX+VQrCYuy9ubkg69fCBxCONJOSLGfw0DWMffQ==
 
 tapable@^1.0.0, tapable@^1.1.0:
   version "1.1.1"

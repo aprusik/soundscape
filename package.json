@@ -42,6 +42,7 @@
     "@rmwc/grid": "^5.3.1",
     "@rmwc/icon": "^5.3.1",
     "@rmwc/icon-button": "^5.3.1",
+    "@rmwc/image-list": "^5.5.2",
     "@rmwc/select": "^5.3.1",
     "@rmwc/slider": "^5.3.1",
     "@rmwc/textfield": "^5.3.1",

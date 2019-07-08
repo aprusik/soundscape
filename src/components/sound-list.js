@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { SoundCard } from './sound-card'
-import { Grid, GridCell } from '@rmwc/grid'
+import { ImageList, ImageListItem } from '@rmwc/image-list'
 
 export class SoundList extends Component {
   constructor(props) {
@@ -17,13 +17,15 @@ export class SoundList extends Component {
 
     return (
       <div>
-        <Grid align='right'>
-          {sounds.map( (sound, index) => { return (
-            <GridCell span='4'>
-              <SoundCard name={sound} fname={sound}/>
-            </GridCell>
-          )})}
-        </Grid>
+        <ImageList style={{ margin: '20px' }}>
+          {sounds.map((sound, index) => {
+            return (
+              <ImageListItem key={sound} style={{ margin: '20px' }}>
+                <SoundCard name={sound} fname={sound} />
+              </ImageListItem>
+            )
+          })}
+        </ImageList>
       </div>
     )
   }

@@ -5,7 +5,6 @@
 @import "@material/typography/mdc-typography";
 @import "@material/slider/mdc-slider";
 @import "@material/icon-button/mdc-icon-button";
-@import "@material/layout-grid/mdc-layout-grid";
 @import "@material/textfield/mdc-text-field";
 @import "@material/dialog/mdc-dialog";
 @import "@material/select/mdc-select";
@@ -16,6 +15,7 @@
 @import "@material/menu/mdc-menu";
 @import "@material/menu-surface/mdc-menu-surface";
 @import "@material/ripple/mdc-ripple";
+@import "@material/image-list/dist/mdc.image-list";
 
 :root {
   --mdc-theme-primary: #445963;
