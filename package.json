@@ -51,7 +51,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-react-app": "^3.1.2",
     "custom-electron-titlebar": "^3.0.3",
-    "electron": "^4.1.0",
+    "electron": "^18.3.7",
     "frameless-titlebar": "^1.0.5",
     "material-components-web": "^1.1.1",
     "react": "^16.8.4",
